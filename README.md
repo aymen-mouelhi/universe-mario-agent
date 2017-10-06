@@ -6,12 +6,14 @@ It contains a basic implementation of the [A3C algorithm](https://arxiv.org/abs/
 # Dependencies
 
 * Python 2.7 or 3.5
+* [Golang](https://golang.org/doc/install)
 * [six](https://pypi.python.org/pypi/six) (for py2/3 compatibility)
 * [TensorFlow](https://www.tensorflow.org/) 0.12
 * [tmux](https://tmux.github.io/) (the start script opens up a tmux session with multiple windows)
 * [htop](https://hisham.hm/htop/) (shown in one of the tmux windows)
 * [gym](https://pypi.python.org/pypi/gym)
 * gym[atari]
+* libjpeg-turbo (`brew install libjpeg-turbo`)
 * [universe](https://pypi.python.org/pypi/universe)
 * [opencv-python](https://pypi.python.org/pypi/opencv-python)
 * [numpy](https://pypi.python.org/pypi/numpy)
@@ -23,9 +25,9 @@ It contains a basic implementation of the [A3C algorithm](https://arxiv.org/abs/
 conda create --name universe-starter-agent python=3.5
 source activate universe-starter-agent
 
-brew install tmux htop cmake      # On Linux use sudo apt-get install -y tmux htop cmake
+brew install tmux htop cmake golang libjpeg-turbo      # On Linux use sudo apt-get install -y tmux htop cmake golang libjpeg-dev
 
-pip install gym[atari]
+pip install "gym[atari]"
 pip install universe
 pip install six
 pip install tensorflow
