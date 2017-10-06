@@ -2,6 +2,7 @@ import cv2
 from gym.spaces.box import Box
 import numpy as np
 import gym
+import gym_mupen64plus
 from gym import spaces
 import logging
 import universe
@@ -21,6 +22,8 @@ def create_env(env_id, client_id, remotes, **kwargs):
         return create_flash_env(env_id, client_id, remotes, **kwargs)
     elif spec.tags.get('atari', False) and spec.tags.get('vnc', False):
         return create_vncatari_env(env_id, client_id, remotes, **kwargs)
+    elif spec.tags.get('mupen', False):
+        return create_mupen_env(env_id)
     else:
         # Assume atari.
         assert "." not in env_id  # universe environments have dots in names.
@@ -74,6 +77,14 @@ def create_atari_env(env_id):
     env = gym.make(env_id)
     env = Vectorize(env)
     env = AtariRescale42x42(env)
+    env = DiagnosticsInfo(env)
+    env = Unvectorize(env)
+    return env
+
+def create_mupen_env(env_id):
+    env = gym.make(env_id)
+    env = Vectorize(env)
+    env = MupenRescale(env)
     env = DiagnosticsInfo(env)
     env = Unvectorize(env)
     return env
@@ -178,6 +189,14 @@ def _process_frame42(frame):
     frame = np.reshape(frame, [42, 42, 1])
     return frame
 
+def _process_frame_mupen(frame):
+    #frame = cv2.resize(frame, (320, 240))
+    frame = cv2.resize(frame, (160, 120))
+    frame = frame.mean(2).astype(np.float32)
+    frame *= (1.0 / 255.0)
+    frame = np.reshape(frame, [120, 160, 1])
+    return frame
+
 class AtariRescale42x42(vectorized.ObservationWrapper):
     def __init__(self, env=None):
         super(AtariRescale42x42, self).__init__(env)
@@ -185,6 +204,14 @@ class AtariRescale42x42(vectorized.ObservationWrapper):
 
     def _observation(self, observation_n):
         return [_process_frame42(observation) for observation in observation_n]
+
+class MupenRescale(vectorized.ObservationWrapper):
+    def __init__(self, env=None):
+        super(MupenRescale, self).__init__(env)
+        self.observation_space = Box(0.0, 1.0, [120, 160, 1])
+
+    def _observation(self, observation_n):
+        return [_process_frame_mupen(observation) for observation in observation_n]
 
 class FixedKeyState(object):
     def __init__(self, keys):
