@@ -1,4 +1,3 @@
-#FROM ubuntu
 FROM bz/test-gym-container:0.0.3
 
 RUN apt-get update && \
@@ -10,12 +9,9 @@ RUN apt-get update && \
         libjpeg-dev \
         libsm6 \
         libxrender1 \
-        #python3.5 \
-        #python3-pip \
         zlib1g-dev
 
 RUN pip install --upgrade pip && \
-    #pip3 install --upgrade pip && \
     pip install \
         "gym[atari]" \
         numpy \

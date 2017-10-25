@@ -6,7 +6,7 @@ import argparse
 import logging
 import sys, signal
 import time
-import os
+import os, socket
 from a3c import A3C
 from envs import create_env
 import distutils.version
@@ -22,9 +22,9 @@ class FastSaver(tf.train.Saver):
         super(FastSaver, self).save(sess, save_path, global_step, latest_filename,
                                     meta_graph_suffix, False)
 
-def run(args, server):
-    env = create_env(args.env_id, client_id=str(args.task), remotes=args.remotes)
-    trainer = A3C(env, args.task, args.visualise)
+def run(args, server, task):
+    env = create_env(args.env_id, client_id=str(task), remotes=args.remotes)
+    trainer = A3C(env, task, args.visualise)
 
     # Variable names that start with "local" are not saved in checkpoints.
     if use_tf12_api:
@@ -46,16 +46,18 @@ def run(args, server):
         logger.info("Initializing all parameters.")
         ses.run(init_all_op)
 
-    config = tf.ConfigProto(device_filters=["/job:ps", "/job:worker/task:{}/cpu:0".format(args.task)])
+    config = tf.ConfigProto(device_filters=["/job:ps", "/job:worker/task:{}/cpu:0".format(task)])
     logdir = os.path.join(args.log_dir, 'train')
 
     if use_tf12_api:
-        summary_writer = tf.summary.FileWriter(logdir + "_%d" % args.task)
+        summary_writer = tf.summary.FileWriter(logdir + "_%d" % task)
     else:
-        summary_writer = tf.train.SummaryWriter(logdir + "_%d" % args.task)
+        summary_writer = tf.train.SummaryWriter(logdir + "_%d" % task)
 
-    logger.info("Events directory: %s_%s", logdir, args.task)
-    sv = tf.train.Supervisor(is_chief=(args.task == 0),
+    logger.info("Events directory: %s_%s", logdir, task)
+    is_chief = (task == 0)
+    logger.info("Is chief? %s", is_chief)
+    sv = tf.train.Supervisor(is_chief=is_chief,
                              logdir=logdir,
                              saver=saver,
                              summary_op=None,
@@ -85,25 +87,28 @@ def run(args, server):
     sv.stop()
     logger.info('reached %s steps. worker stopped.', global_step)
 
-def cluster_spec(num_workers, num_ps):
+def cluster_spec(is_worker, workerhost, worker_id):
     """
 More tensorflow setup for data parallelism
 """
     cluster = {}
-    port = 12222
 
     all_ps = []
-    host = '127.0.0.1'
-    for _ in range(num_ps):
-        all_ps.append('{}:{}'.format(host, port))
-        port += 1
+    host = 'param_svr'
+    port = 12222
+    all_ps.append('{}:{}'.format(host, port))
     cluster['ps'] = all_ps
 
-    all_workers = []
-    for _ in range(num_workers):
-        all_workers.append('{}:{}'.format(host, port))
-        port += 1
-    cluster['worker'] = all_workers
+    port += 1
+    if is_worker:
+        cluster['worker'] = {int(worker_id): "%s:%s" % (workerhost, port)}
+    else:
+        all_workers = []
+        worker_ips = socket.gethostbyname_ex('worker')[2]
+        worker_ips.sort()
+        for w in worker_ips:
+            all_workers.append('{}:{}'.format(w, port))
+        cluster['worker'] = all_workers
     return cluster
 
 def main(_):
@@ -127,8 +132,15 @@ Setting up Tensorflow for data parallel work
     parser.add_argument('--visualise', action='store_true',
                         help="Visualise the gym environment by running env.render() between each timestep")
 
+    host = socket.gethostname()
+    ip=socket.gethostbyname(host)
+    worker_id = int(ip[ip.rfind('.') + 1:]) - 3 # HACK:
+                                                # The PS server should start as x.x.x.2,
+                                                # and the workers should start as x.x.x.3-n
+
     args = parser.parse_args()
-    spec = cluster_spec(args.num_workers, 1)
+    spec = cluster_spec(args.job_name == "worker", ip, worker_id)
+    logger.info("Defining cluster spec as: %s", spec)
     cluster = tf.train.ClusterSpec(spec).as_cluster_def()
 
     def shutdown(signal, frame):
@@ -139,9 +151,9 @@ Setting up Tensorflow for data parallel work
     signal.signal(signal.SIGTERM, shutdown)
 
     if args.job_name == "worker":
-        server = tf.train.Server(cluster, job_name="worker", task_index=args.task,
+        server = tf.train.Server(cluster, job_name="worker", task_index=worker_id,
                                  config=tf.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=2))
-        run(args, server)
+        run(args, server, worker_id)
     else:
         server = tf.train.Server(cluster, job_name="ps", task_index=args.task,
                                  config=tf.ConfigProto(device_filters=["/job:ps"]))
