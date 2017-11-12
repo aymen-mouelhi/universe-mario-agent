@@ -1,3 +1,14 @@
+# Mario Kart A3C Agent
+
+Forked/branched from the [universe-starter-agent](https://github.com/openai/universe-starter-agent). Several tweaks have been made to allow this agent to work with the [gym-mupen64plus](https://github.com/bzier/gym-mupen64plus) N64 environment (specifically for the MarioKart64 game). This initial set of commits is currently unrefined/hacky/sloppy and needs significant cleanup. However, it is functional at this point. 
+
+This README will be updated with many more details soon. What follows is the README from the original repository. Some of it may no longer be relevant or accurate. It will be cleaned up / removed later as well.
+
+------------
+------------
+------------
+
+
 # universe-starter-agent
 
 The codebase implements a starter agent that can solve a number of `universe` environments.
