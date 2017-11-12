@@ -1,6 +1,7 @@
 version: '3.2'
 
 # docker-compose -p mario-kart-agent up -d --scale worker=2
+# docker exec -it universestarteragent_worker_1 x11vnc -display :0 -forever -viewonly -rfbport 5900 -shared &
 # docker-compose -p mario-kart-agent down
 
 services:
@@ -25,6 +26,8 @@ services:
     image: "bz/mario-kart-a3c:0.0.2"
     entrypoint: /bin/bash ./worker.sh
     tty: true
+    ports:
+     - "5900"
     volumes:
      - type: bind
        source: .
