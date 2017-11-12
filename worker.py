@@ -118,9 +118,9 @@ Setting up Tensorflow for data parallel work
 
     parser = argparse.ArgumentParser(description=None)
     parser.add_argument('-v', '--verbose', action='count', dest='verbosity', default=0, help='Set verbosity.')
-    parser.add_argument('--task', default=0, type=int, help='Task index')
+    # parser.add_argument('--task', default=0, type=int, help='Task index')
     parser.add_argument('--job-name', default="worker", help='worker or ps')
-    parser.add_argument('--num-workers', default=1, type=int, help='Number of workers')
+    # parser.add_argument('--num-workers', default=1, type=int, help='Number of workers')
     parser.add_argument('--log-dir', default="/tmp/pong", help='Log directory path')
     parser.add_argument('--env-id', default="PongDeterministic-v3", help='Environment id')
     parser.add_argument('-r', '--remotes', default=None,
@@ -134,9 +134,9 @@ Setting up Tensorflow for data parallel work
 
     host = socket.gethostname()
     ip=socket.gethostbyname(host)
-    worker_id = int(ip[ip.rfind('.') + 1:]) - 3 # HACK:
-                                                # The PS server should start as x.x.x.2,
-                                                # and the workers should start as x.x.x.3-n
+    worker_id = int(ip[ip.rfind('.') + 1:]) - 2 # HACK:
+                                                # The workers should start as x.x.x.2-n
+                                                # and the PS server should start as x.x.x.n+1,
 
     args = parser.parse_args()
     spec = cluster_spec(args.job_name == "worker", ip, worker_id)
@@ -155,7 +155,7 @@ Setting up Tensorflow for data parallel work
                                  config=tf.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=2))
         run(args, server, worker_id)
     else:
-        server = tf.train.Server(cluster, job_name="ps", task_index=args.task,
+        server = tf.train.Server(cluster, job_name="ps", task_index=0,
                                  config=tf.ConfigProto(device_filters=["/job:ps"]))
         while True:
             time.sleep(1000)

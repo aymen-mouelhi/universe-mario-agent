@@ -1,8 +1,12 @@
 version: '3.2'
+
+# docker-compose -p mario-kart-agent up -d --scale worker=2
+# docker-compose -p mario-kart-agent down
+
 services:
   param_svr:
     image: "bz/mario-kart-a3c:0.0.2"
-    entrypoint: /bin/bash
+    entrypoint: /bin/bash ./paramsvr.sh
     tty: true
     volumes:
      - type: bind
@@ -11,30 +15,30 @@ services:
      - type: bind
        source: /home/brian/Programming/gym-mupen64plus
        target: /src/gym-mupen64plus
-     - type: volume
-       source: mklogs
-       target: /tmp/marioKartLogs
-
-  worker:
-    image: "bz/mario-kart-a3c:0.0.2"
-    entrypoint: /bin/bash
-    tty: true
-    volumes:
-     - type: bind
-       source: .
-       target: /src/universe-starter-agent
-     - type: bind
-       source: /home/brian/Programming/gym-mupen64plus
-       target: /src/gym-mupen64plus
-     - type: volume
-       source: ROMs2
-       target: /src/gym-mupen64plus/gym_mupen64plus/ROMs
      - type: volume
        source: mklogs
        target: /tmp/marioKartLogs
     depends_on:
-     - param_svr
+     - worker
+
+  worker:
+    image: "bz/mario-kart-a3c:0.0.2"
+    entrypoint: /bin/bash ./worker.sh
+    tty: true
+    volumes:
+     - type: bind
+       source: .
+       target: /src/universe-starter-agent
+     - type: bind
+       source: /home/brian/Programming/gym-mupen64plus
+       target: /src/gym-mupen64plus
+     - type: volume
+       source: ROMs
+       target: /src/gym-mupen64plus/gym_mupen64plus/ROMs
+     - type: volume
+       source: mklogs
+       target: /tmp/marioKartLogs
 
 volumes:
-  ROMs2:
+  ROMs:
   mklogs:
