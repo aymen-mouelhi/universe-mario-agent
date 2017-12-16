@@ -6,9 +6,11 @@ version: '3.2'
 
 services:
   param_svr:
-    image: "bz/mario-kart-a3c:0.0.2"
+    image: "bz/mario-kart-a3c:0.0.3"
     entrypoint: /bin/bash ./paramsvr.sh
     tty: true
+    ports:
+     - "12345"
     volumes:
      - type: bind
        source: .
@@ -23,7 +25,7 @@ services:
      - worker
 
   worker:
-    image: "bz/mario-kart-a3c:0.0.2"
+    image: "bz/mario-kart-a3c:0.0.3"
     entrypoint: /bin/bash ./worker.sh
     tty: true
     ports:
@@ -35,13 +37,12 @@ services:
      - type: bind
        source: /home/brian/Programming/gym-mupen64plus
        target: /src/gym-mupen64plus
-     - type: volume
-       source: ROMs
+     - type: bind
+       source: /home/brian/Programming/gym-mupen64plus/gym_mupen64plus/ROMs
        target: /src/gym-mupen64plus/gym_mupen64plus/ROMs
      - type: volume
        source: mklogs
        target: /tmp/marioKartLogs
 
 volumes:
-  ROMs:
   mklogs:
