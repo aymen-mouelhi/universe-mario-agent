@@ -105,6 +105,7 @@ class DiagnosticsInfoI(vectorized.Filter):
         self._all_rewards = []
         self._num_vnc_updates = 0
         self._last_episode_id = -1
+        self._reward_in_interval = 0
 
     def _after_reset(self, observation):
         logger.info('Resetting environment')
@@ -122,14 +123,23 @@ class DiagnosticsInfoI(vectorized.Filter):
         if info.get("stats.vnc.updates.n") is not None:
             self._num_vnc_updates += info.get("stats.vnc.updates.n")
 
+        if reward is not None:
+            self._episode_reward += reward
+            self._reward_in_interval += reward
+            if observation is not None:
+                self._episode_length += 1
+            self._all_rewards.append(reward)
+
         if self._local_t % self._log_interval == 0:
             cur_time = time.time()
             elapsed = cur_time - self._last_time
             fps = self._log_interval / elapsed
             self._last_time = cur_time
-            cur_episode_id = info.get('vectorized.episode_id', 0)
             to_log["diagnostics/fps"] = fps
+            cur_episode_id = info.get('vectorized.episode_id', 0)
             if self._last_episode_id == cur_episode_id:
+                to_log["global/reward_per_step"] = self._reward_in_interval / self._log_interval  # TODO: Divide by zero?
+                self._reward_in_interval = 0
                 to_log["diagnostics/fps_within_episode"] = fps
             self._last_episode_id = cur_episode_id
             if info.get("stats.gauges.diagnostics.lag.action") is not None:
@@ -157,12 +167,6 @@ class DiagnosticsInfoI(vectorized.Filter):
             if info.get("env_status.state_id") is not None:
                 to_log["diagnostics/env_state_id"] = info["env_status.state_id"]
 
-        if reward is not None:
-            self._episode_reward += reward
-            if observation is not None:
-                self._episode_length += 1
-            self._all_rewards.append(reward)
-
         if done:
             logger.info('Episode terminating: episode_reward=%s episode_length=%s', self._episode_reward, self._episode_length)
             total_time = time.time() - self._episode_time
@@ -170,8 +174,10 @@ class DiagnosticsInfoI(vectorized.Filter):
             to_log["global/episode_length"] = self._episode_length
             to_log["global/episode_time"] = total_time
             to_log["global/reward_per_time"] = self._episode_reward / total_time
+            to_log["global/reward_per_step"] = self._reward_in_interval / (self._local_t % self._log_interval)  # TODO: Divide by zero?
             self._episode_reward = 0
             self._episode_length = 0
+            self._reward_in_interval = 0
             self._all_rewards = []
 
         return observation, reward, done, to_log

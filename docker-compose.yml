@@ -1,23 +1,16 @@
 version: '3.2'
 
 # docker-compose -p mario-kart-agent up -d --scale worker=2
-# docker exec -it universestarteragent_worker_1 x11vnc -display :0 -forever -viewonly -rfbport 5900 -shared &
 # docker-compose -p mario-kart-agent down
 
 services:
   param_svr:
-    image: "bz/mario-kart-a3c:0.0.3"
+    image: "${IMAGE_SPEC}"
     entrypoint: /bin/bash ./paramsvr.sh
     tty: true
     ports:
-     - "12345"
+     - "12345:12345"
     volumes:
-     - type: bind
-       source: .
-       target: /src/universe-starter-agent
-     - type: bind
-       source: /home/brian/Programming/gym-mupen64plus
-       target: /src/gym-mupen64plus
      - type: volume
        source: mklogs
        target: /tmp/marioKartLogs
@@ -25,20 +18,14 @@ services:
      - worker
 
   worker:
-    image: "bz/mario-kart-a3c:0.0.3"
+    image: "${IMAGE_SPEC}"
     entrypoint: /bin/bash ./worker.sh
     tty: true
     ports:
      - "5900"
     volumes:
      - type: bind
-       source: .
-       target: /src/universe-starter-agent
-     - type: bind
-       source: /home/brian/Programming/gym-mupen64plus
-       target: /src/gym-mupen64plus
-     - type: bind
-       source: /home/brian/Programming/gym-mupen64plus/gym_mupen64plus/ROMs
+       source: "${LOCAL_ROM_PATH}" # Since ROMs are not included in the image, bind mount a local path
        target: /src/gym-mupen64plus/gym_mupen64plus/ROMs
      - type: volume
        source: mklogs

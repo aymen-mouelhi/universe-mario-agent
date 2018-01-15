@@ -134,6 +134,7 @@ Setting up Tensorflow for data parallel work
 
     host = socket.gethostname()
     ip=socket.gethostbyname(host)
+    # TODO: Why not simply 'register' all IPs on the subnet as possible workers. Have the P.S. start as x.x.x.1 and make all others workers. That should allow for on-the-fly scaling with docker-compose
     worker_id = int(ip[ip.rfind('.') + 1:]) - 2 # HACK:
                                                 # The workers should start as x.x.x.2-n
                                                 # and the PS server should start as x.x.x.n+1,

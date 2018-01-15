@@ -1,4 +1,5 @@
-FROM bz/test-gym-container:0.0.4
+FROM bz/gym-mupen64plus:0.0.5
+LABEL maintainer "Brian Zier <https://github.com/bzier/>"
 
 RUN apt-get update && \
     apt-get install -y \
