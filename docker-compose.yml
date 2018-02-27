@@ -1,4 +1,4 @@
-version: '3.2'
+version: "3.2"
 
 # docker-compose -p mario-kart-agent up -d --scale worker=2
 # docker-compose -p mario-kart-agent down

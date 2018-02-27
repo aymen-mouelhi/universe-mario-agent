@@ -1,5 +1,4 @@
-FROM bz/gym-mupen64plus:0.0.5
-LABEL maintainer "Brian Zier <https://github.com/bzier/>"
+FROM aymen/gym-docker:latest
 
 RUN apt-get update && \
     apt-get install -y \
@@ -9,6 +8,10 @@ RUN apt-get update && \
         htop \
         libjpeg-dev \
         libsm6 \
+        python-opencv \
+        libopencv-dev \
+        python-numpy \
+        python-dev \
         libxrender1 \
         zlib1g-dev
 
@@ -16,12 +19,13 @@ RUN pip install --upgrade pip && \
     pip install \
         "gym[atari]" \
         numpy \
+        panda \
         opencv-python \
         scipy \
         six \
         tensorflow && \
     # Don't know why, but this one wanted to be installed separately
-    pip install \ 
+    pip install \
         universe
 
 # Copy the current directory to the container working dir

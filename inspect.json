@@ -1,0 +1,464 @@
+[
+    {
+        "Id": "da7fc92743d14449722f2a50302ca7a2326d554eed77154277349fdb5a945d2d",
+        "Created": "2018-02-26T13:22:00.733435868Z",
+        "Path": "/bin/bash",
+        "Args": [
+            "./worker.sh"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 5311,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2018-02-26T13:22:02.482805202Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:a1f7a21838d49c3fdf7381b7ae6680f60807c2eb3c67cb39fc961184aa181634",
+        "ResolvConfPath": "/var/lib/docker/containers/da7fc92743d14449722f2a50302ca7a2326d554eed77154277349fdb5a945d2d/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/da7fc92743d14449722f2a50302ca7a2326d554eed77154277349fdb5a945d2d/hostname",
+        "HostsPath": "/var/lib/docker/containers/da7fc92743d14449722f2a50302ca7a2326d554eed77154277349fdb5a945d2d/hosts",
+        "LogPath": "/var/lib/docker/containers/da7fc92743d14449722f2a50302ca7a2326d554eed77154277349fdb5a945d2d/da7fc92743d14449722f2a50302ca7a2326d554eed77154277349fdb5a945d2d-json.log",
+        "Name": "/mariokartagent_worker_1",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/home/aymen/Bureau/projects/gym-mupen64plus-updated/gym_mupen64plus/ROMs/marioKart.n64:/src/gym-mupen64plus/gym_mupen64plus/ROMs:rw",
+                "mariokartagent_mklogs:/tmp/marioKartLogs:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "mariokartagent_default",
+            "PortBindings": {
+                "5900/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": ""
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": [],
+            "CapAdd": null,
+            "CapDrop": null,
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "shareable",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DiskQuota": 0,
+            "KernelMemory": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": 0,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/c1c4ea3d7aa413d98435c6222671d25154a7b32d1edfc846660f71a56e0294d9-init/diff:/var/lib/docker/overlay2/a703da6e849252e2842ebc6e2c1dc765a2c4b351f29e342487e5313125e5889c/diff:/var/lib/docker/overlay2/756f656d26fdd4f201af6bf48fe52fa67640b934a25ce9a56814b8c9c66b5097/diff:/var/lib/docker/overlay2/cf3ac7ec72a5a828c6eefa718af313855638db4670719cd8e0d8f81d7ff37571/diff:/var/lib/docker/overlay2/6fb8357abb0f1f775edf4ffe4fd34dfcdb43deca887fd077a3710d945fc14466/diff:/var/lib/docker/overlay2/e02947809569aa6d0340c0e38ebdf837571220b0ae2e97e9b866cca9f60a8579/diff:/var/lib/docker/overlay2/8c1ad44e8a85f29797796b8c5402683239b17939d68fc9a2c9a39c7980c5c213/diff:/var/lib/docker/overlay2/57c5274c912b76645bcdb04ac48d717a1e75f25b7ac820d1f149f7115791b3f6/diff:/var/lib/docker/overlay2/a2721470a059d18340c6253c84fbf06d5268fa2539681e56a4a120bc4b9c2fa8/diff:/var/lib/docker/overlay2/edd73b73ba85b95f1f6fcf64ff3a61f65aa970e9a73ec80b0ad937c0d937bf66/diff:/var/lib/docker/overlay2/2ac8be6c65d2a4b8ebeb6422fd24b28a6084cfd2cca18eaaf54a9a0a73108ddd/diff:/var/lib/docker/overlay2/0ab60f6bfb7d69edae38a84042579f8d96ab6095fb9c25aa2aa7dbadd6642e1c/diff:/var/lib/docker/overlay2/e5eadaecf91a7f1b06f254308dc47d950110daf0ac87f90e5963deee2a343e4d/diff:/var/lib/docker/overlay2/f0c28384cd5019230f9236a6c41418e395c42cd9346914e5ae571c9de20c3146/diff:/var/lib/docker/overlay2/795f4b6cb9cc462a86304595f7291a0747ef16ab521bac090c1c2489326755e9/diff:/var/lib/docker/overlay2/5b4dee552a9414d93ae0fcc60ee353f6308808a1264642b1814fa7d1befe725e/diff:/var/lib/docker/overlay2/33459434dc858e3ca8951266afd264b8ac8630da5fa2628b6175f57a59baa1f2/diff:/var/lib/docker/overlay2/cc8a30a5c80f544f6c045b6c791db595a0124816cef973a8fe7e74af33d2fe20/diff:/var/lib/docker/overlay2/c4632abbb0fdddbc712e6ff22cba627ceec228efce4cc30cac100f9b2f95ba88/diff:/var/lib/docker/overlay2/5ac2ba68e7c4155a000c620ec79164b9421e9f8dcb7ae5acb7b299cd944b07ef/diff",
+                "MergedDir": "/var/lib/docker/overlay2/c1c4ea3d7aa413d98435c6222671d25154a7b32d1edfc846660f71a56e0294d9/merged",
+                "UpperDir": "/var/lib/docker/overlay2/c1c4ea3d7aa413d98435c6222671d25154a7b32d1edfc846660f71a56e0294d9/diff",
+                "WorkDir": "/var/lib/docker/overlay2/c1c4ea3d7aa413d98435c6222671d25154a7b32d1edfc846660f71a56e0294d9/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/aymen/Bureau/projects/gym-mupen64plus-updated/gym_mupen64plus/ROMs/marioKart.n64",
+                "Destination": "/src/gym-mupen64plus/gym_mupen64plus/ROMs",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "volume",
+                "Name": "mariokartagent_mklogs",
+                "Source": "/var/lib/docker/volumes/mariokartagent_mklogs/_data",
+                "Destination": "/tmp/marioKartLogs",
+                "Driver": "local",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "da7fc92743d1",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "12345/tcp": {},
+                "5900/tcp": {}
+            },
+            "Tty": true,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": null,
+            "Image": "aymen/mario-kart-a3c:0.0.5",
+            "Volumes": {
+                "/src/gym-mupen64plus/gym_mupen64plus/ROMs": {},
+                "/tmp/marioKartLogs": {}
+            },
+            "WorkingDir": "/src/universe-starter-agent",
+            "Entrypoint": [
+                "/bin/bash",
+                "./worker.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "8498f35439a08db99875410b9285a570bef69f75b15c762e0ec00e3f671328c1",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "mariokartagent",
+                "com.docker.compose.service": "worker",
+                "com.docker.compose.version": "1.19.0"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "40a5d574acf05fc5f663c2e01c9ae7f9d791350b14f7784180686bd6d36f6721",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "12345/tcp": null,
+                "5900/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "32772"
+                    }
+                ]
+            },
+            "SandboxKey": "/var/run/docker/netns/40a5d574acf0",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "mariokartagent_default": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "worker",
+                        "da7fc92743d1"
+                    ],
+                    "NetworkID": "31dde88ae7770da4b16ef32105fab3b94307a05f9943663785a0d1e319b8afcf",
+                    "EndpointID": "102c70d8c2f3cf29747a19729745f48ddcfeffe4d9bf6eae91abea205eb96d6c",
+                    "Gateway": "172.18.0.1",
+                    "IPAddress": "172.18.0.3",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:12:00:03",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+[
+    {
+        "Id": "c9c09573a8dde5c6ef8a0c647974ef911bee5b4367322ea0d16ad4b2c08132d2",
+        "Created": "2018-02-26T14:32:44.553020808Z",
+        "Path": "/bin/bash",
+        "Args": [
+            "./worker.sh"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 32406,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2018-02-26T14:32:45.00820805Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:a1f7a21838d49c3fdf7381b7ae6680f60807c2eb3c67cb39fc961184aa181634",
+        "ResolvConfPath": "/var/lib/docker/containers/c9c09573a8dde5c6ef8a0c647974ef911bee5b4367322ea0d16ad4b2c08132d2/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/c9c09573a8dde5c6ef8a0c647974ef911bee5b4367322ea0d16ad4b2c08132d2/hostname",
+        "HostsPath": "/var/lib/docker/containers/c9c09573a8dde5c6ef8a0c647974ef911bee5b4367322ea0d16ad4b2c08132d2/hosts",
+        "LogPath": "/var/lib/docker/containers/c9c09573a8dde5c6ef8a0c647974ef911bee5b4367322ea0d16ad4b2c08132d2/c9c09573a8dde5c6ef8a0c647974ef911bee5b4367322ea0d16ad4b2c08132d2-json.log",
+        "Name": "/mariokartagent_worker_1",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/home/aymen/Bureau/projects/gym-mupen64plus-updated/gym_mupen64plus/ROMs/marioKart.n64:/src/gym-mupen64plus/gym_mupen64plus/ROMs:rw",
+                "mariokartagent_mklogs:/tmp/marioKartLogs:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "mariokartagent_default",
+            "PortBindings": {
+                "5900/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": ""
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": [],
+            "CapAdd": null,
+            "CapDrop": null,
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "shareable",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DiskQuota": 0,
+            "KernelMemory": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": 0,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/f922cc1607a89ef443bdd311a06f0f83dd0222381093aaa25e01069bb2084c1b-init/diff:/var/lib/docker/overlay2/a703da6e849252e2842ebc6e2c1dc765a2c4b351f29e342487e5313125e5889c/diff:/var/lib/docker/overlay2/756f656d26fdd4f201af6bf48fe52fa67640b934a25ce9a56814b8c9c66b5097/diff:/var/lib/docker/overlay2/cf3ac7ec72a5a828c6eefa718af313855638db4670719cd8e0d8f81d7ff37571/diff:/var/lib/docker/overlay2/6fb8357abb0f1f775edf4ffe4fd34dfcdb43deca887fd077a3710d945fc14466/diff:/var/lib/docker/overlay2/e02947809569aa6d0340c0e38ebdf837571220b0ae2e97e9b866cca9f60a8579/diff:/var/lib/docker/overlay2/8c1ad44e8a85f29797796b8c5402683239b17939d68fc9a2c9a39c7980c5c213/diff:/var/lib/docker/overlay2/57c5274c912b76645bcdb04ac48d717a1e75f25b7ac820d1f149f7115791b3f6/diff:/var/lib/docker/overlay2/a2721470a059d18340c6253c84fbf06d5268fa2539681e56a4a120bc4b9c2fa8/diff:/var/lib/docker/overlay2/edd73b73ba85b95f1f6fcf64ff3a61f65aa970e9a73ec80b0ad937c0d937bf66/diff:/var/lib/docker/overlay2/2ac8be6c65d2a4b8ebeb6422fd24b28a6084cfd2cca18eaaf54a9a0a73108ddd/diff:/var/lib/docker/overlay2/0ab60f6bfb7d69edae38a84042579f8d96ab6095fb9c25aa2aa7dbadd6642e1c/diff:/var/lib/docker/overlay2/e5eadaecf91a7f1b06f254308dc47d950110daf0ac87f90e5963deee2a343e4d/diff:/var/lib/docker/overlay2/f0c28384cd5019230f9236a6c41418e395c42cd9346914e5ae571c9de20c3146/diff:/var/lib/docker/overlay2/795f4b6cb9cc462a86304595f7291a0747ef16ab521bac090c1c2489326755e9/diff:/var/lib/docker/overlay2/5b4dee552a9414d93ae0fcc60ee353f6308808a1264642b1814fa7d1befe725e/diff:/var/lib/docker/overlay2/33459434dc858e3ca8951266afd264b8ac8630da5fa2628b6175f57a59baa1f2/diff:/var/lib/docker/overlay2/cc8a30a5c80f544f6c045b6c791db595a0124816cef973a8fe7e74af33d2fe20/diff:/var/lib/docker/overlay2/c4632abbb0fdddbc712e6ff22cba627ceec228efce4cc30cac100f9b2f95ba88/diff:/var/lib/docker/overlay2/5ac2ba68e7c4155a000c620ec79164b9421e9f8dcb7ae5acb7b299cd944b07ef/diff",
+                "MergedDir": "/var/lib/docker/overlay2/f922cc1607a89ef443bdd311a06f0f83dd0222381093aaa25e01069bb2084c1b/merged",
+                "UpperDir": "/var/lib/docker/overlay2/f922cc1607a89ef443bdd311a06f0f83dd0222381093aaa25e01069bb2084c1b/diff",
+                "WorkDir": "/var/lib/docker/overlay2/f922cc1607a89ef443bdd311a06f0f83dd0222381093aaa25e01069bb2084c1b/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/aymen/Bureau/projects/gym-mupen64plus-updated/gym_mupen64plus/ROMs/marioKart.n64",
+                "Destination": "/src/gym-mupen64plus/gym_mupen64plus/ROMs",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "volume",
+                "Name": "mariokartagent_mklogs",
+                "Source": "/var/lib/docker/volumes/mariokartagent_mklogs/_data",
+                "Destination": "/tmp/marioKartLogs",
+                "Driver": "local",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "c9c09573a8dd",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "12345/tcp": {},
+                "5900/tcp": {}
+            },
+            "Tty": true,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": null,
+            "Image": "aymen/mario-kart-a3c:0.0.5",
+            "Volumes": {
+                "/src/gym-mupen64plus/gym_mupen64plus/ROMs": {},
+                "/tmp/marioKartLogs": {}
+            },
+            "WorkingDir": "/src/universe-starter-agent",
+            "Entrypoint": [
+                "/bin/bash",
+                "./worker.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "8498f35439a08db99875410b9285a570bef69f75b15c762e0ec00e3f671328c1",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "mariokartagent",
+                "com.docker.compose.service": "worker",
+                "com.docker.compose.version": "1.19.0"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "0782b22b82fc5a0f0dadc719eb730d85aada9eb60fe2a304e85e617fb55f0b4c",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "12345/tcp": null,
+                "5900/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "32773"
+                    }
+                ]
+            },
+            "SandboxKey": "/var/run/docker/netns/0782b22b82fc",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "mariokartagent_default": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "c9c09573a8dd",
+                        "worker"
+                    ],
+                    "NetworkID": "b6fbff3c4bbfc5bf73d3741ae6d34ede8ea1a527047989bcde2cb937a5268c3c",
+                    "EndpointID": "516d2c8591d0e23df849394d30cf735a80e2545df7608a361b0416fe4ecb3e01",
+                    "Gateway": "172.18.0.1",
+                    "IPAddress": "172.18.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:12:00:02",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
